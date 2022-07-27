@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="  https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+</head>
+
+<body>
+    <style>
+        #convert {
+            margin-left: 200px;
+            margin-top: 50px;
+            background-color: rgba(0, 0, 255, 0.452);
+        }
+
+        #select {
+            margin-top: 20px;
+            width: 200px;
+        }
+    </style>
+
+
+    <div>
+        <label>Amount</label>
+        <input type="text" id="Amount">
+        <label>from</label>
+        <select name="" id="select">
+                <option value="1" id="usd" >USD-US Dollar</option>
+                <option value="2" id="euro" >EUR-Euro</option>
+                <option value="3" id="cad">CAD Canadian Dollar</option>
+            </select>
+
+      
+        <label>to</label>
+
+        <select name="" id="select2">
+            <option value="4" id="" >AZE-AZERBAIJAN manat</option>
+            <option value="5" id="" >EUR-Euro</option>
+            <option value="6" id="">CAD Canadian Dollar</option>
+        </select>
+    </div>
+    <h1 id="h1"></h1>
+    <button id="convert" onclick=" f()">Convert</button>
+    <script>
+
+        function f() {
+
+          var  d = document.getElementById("Amount").value * 1
+           var select=document.getElementById("select").value;
+           var select2=document.getElementById("select2").value;
+            if (select === "1"&& select2 === "4") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/USD").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.AZN * d;
+
+                    }
+                )
+             
+            }
+            if (select === "1"&& select2 === "5") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/USD").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.EUR * d;
+
+                    }
+                )
+             
+            }
+            if (select === "1"&& select2 === "6") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/USD").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.CAD * d;
+
+                    }
+                )
+             
+            }
+           else  if(select === "2"&& select2 === "4") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/euro").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.AZN * d;
+
+                    }
+                )}
+                else  if(select === "2"&& select2 === "6") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/euro").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.CAD * d;
+
+                    }
+                )}
+                else  if (select === "3"&& select2 === "4") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/CAD").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.AZN * d;
+
+                    }
+                )
+            }
+          
+            else  if (select === "3"&& select2 === "5") {
+                axios.get("https://api.exchangerate-api.com/v4/latest/CAD").then(
+                    function (response) {
+                        console.log(response);
+                        document.getElementById("h1").innerHTML = response.data.rates.EUR * d;
+
+                    }
+                )
+            }
+
+
+
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
